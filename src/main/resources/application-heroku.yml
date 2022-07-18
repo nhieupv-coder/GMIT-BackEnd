@@ -5,9 +5,8 @@ spring:
     password: ${PASSSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
-    properties:
-      hibernate:
-        show_sql: true
-        ddl-auto: create
-        #Format SQL
-        format_sql: true
+    hibernate:
+      show_sql: true
+      ddl-auto: create
+      #Format SQL
+      format_sql: true

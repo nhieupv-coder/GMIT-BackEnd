@@ -83,7 +83,7 @@ public class LocationImpl implements GetLocationsList {
 
     private List<CategoryResponse> getListCategory(List<CategoryLocation> list) {
         List<Category> listCategory = list.stream()
-                .map(CategoryLocation::getCategory).toList();
+                .map(CategoryLocation::getCategory).collect(Collectors.toList());
         return listCategory.stream().map(t -> CategoryResponse.builder().categoryId(t.getId())
                 .name(t.getTitle()).build()).collect(Collectors.toList());
     }

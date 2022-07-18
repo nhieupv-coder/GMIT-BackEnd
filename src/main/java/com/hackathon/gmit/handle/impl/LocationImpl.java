@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class LocationImpl implements GetLocationsList {
@@ -60,7 +61,7 @@ public class LocationImpl implements GetLocationsList {
                     .imageDescription(i.getImageDescription())
                     .imageAd(i.getImageAd())
                     .category(getListCategory(i.getCategoryLocation()))
-                    .build()).toList();
+                    .build()).collect(Collectors.toList());
         } else {
             list = locationList.stream().map(i -> LocationResponse.builder()
                     .id(i.getId())
@@ -74,7 +75,7 @@ public class LocationImpl implements GetLocationsList {
                     .imageAd(i.getImageAd())
                     .category(getListCategory(i.getCategoryLocation()))
                     .build()).sorted(Comparator
-                    .comparing(LocationResponse::getDistance)).toList();
+                    .comparing(LocationResponse::getDistance)).collect(Collectors.toList());
         }
         return LocationPageResponse.builder().content(list).currentPage(locationPageable.getNumber())
                 .size(locationPageable.getSize()).totalPage(locationPageable.getTotalPages()).totalElement(locationPageable.getTotalElements()).build();
@@ -84,6 +85,6 @@ public class LocationImpl implements GetLocationsList {
         List<Category> listCategory = list.stream()
                 .map(CategoryLocation::getCategory).toList();
         return listCategory.stream().map(t -> CategoryResponse.builder().categoryId(t.getId())
-                .name(t.getTitle()).build()).toList();
+                .name(t.getTitle()).build()).collect(Collectors.toList());
     }
 }

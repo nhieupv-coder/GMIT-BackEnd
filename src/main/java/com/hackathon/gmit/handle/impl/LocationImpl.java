@@ -36,7 +36,6 @@ public class LocationImpl implements GetLocationsList {
     @Autowired
     CategoryLocationJPARepository categoryLocationJPARepository;
 
-
     @Override
     public LocationPageResponse getLocationList(Pageable pageable, LocationPropertiesRequest location) {
         Page<Location> locationPageable;

@@ -23,6 +23,8 @@ public class Location {
     private String address;
     private double longitude;
     private double latitude;
+    private LocalDateTime openTime;
+    private LocalDateTime closeTime;
     @Column(length = 3000)
     private String description;
     @Column(length = 100)

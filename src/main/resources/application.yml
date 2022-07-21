@@ -1,3 +1,15 @@
 spring:
   profiles:
     active: heroku
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      data-locations: classpath:db/location.sql,
+                      classpath:db/category.sql,
+                      classpath:db/category_location.sql
+      mode: always

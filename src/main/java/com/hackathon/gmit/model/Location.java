@@ -36,4 +36,7 @@ public class Location {
     private LocalDateTime deleteAt;
     @OneToMany(mappedBy = "location")
     private List<CategoryLocation> categoryLocation;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "district_id")
+    private Districts district;
 }

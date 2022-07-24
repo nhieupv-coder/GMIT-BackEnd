@@ -5,7 +5,6 @@
 package com.hackathon.gmit.model;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +24,7 @@ public class Events implements Serializable {
     String description;
     @Column(length = 50)
     String imageEvent;
-    @OneToMany(mappedBy = "location")
-    private List<CategoryLocation> categoryLocation;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    Location location;
 }

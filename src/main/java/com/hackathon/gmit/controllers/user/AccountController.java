@@ -31,7 +31,6 @@ public class AccountController {
     }
     @GetMapping("check-login")
     public ResponseEntity<String>  checkLogin(){
-//        throw new JWTInvalidException("sds");
         return ResponseEntity.ok("Login check success");
     }
 

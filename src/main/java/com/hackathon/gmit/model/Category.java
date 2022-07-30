@@ -23,6 +23,9 @@ public class Category implements Serializable {
     private String title;
     @Column(length = 150)
     private LocalDateTime deleteAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_group_id")
+    private CategoryGroup categoryGroup;
     @OneToMany(mappedBy = "category")
     private List<CategoryLocation> categoryLocation;
 }

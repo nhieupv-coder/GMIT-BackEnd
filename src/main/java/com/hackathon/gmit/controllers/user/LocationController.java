@@ -23,7 +23,6 @@ public class LocationController {
     @GetMapping
     public ResponseEntity<LocationPageResponse> getListLocation(@PageableDefault(page = 0, size = 10)Pageable pageable,
                                                                 LocationPropertiesRequest request){
-        System.out.println(request.toString());
         LocationPageResponse locationResponse = getLocationsList.getLocationList(pageable,request);
         return ResponseEntity.ok(locationResponse);
     }

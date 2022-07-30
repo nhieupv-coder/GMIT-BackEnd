@@ -7,10 +7,11 @@ package com.hackathon.gmit.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class CategoryLocation {
+public class CategoryLocation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

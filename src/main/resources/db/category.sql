@@ -7,13 +7,14 @@ VALUES (1, 'Mua sắm'),
        (2, 'Tham quan/Giải trí'),
        (3, 'Ăn uống'),
        (4, 'Sự kiện/Hoạt động'),
-       (5, 'Lĩnh vực khác');
+       (5, 'Di chuyển'),
+       (6, 'Lĩnh vực khác');
 
 INSERT INTO public.category(
     id, title, category_group_id)
-VALUES (1, 'Nhà hàng', 4),
-       (2, 'Cà phê', 4),
-       (3, 'Quán ăn', 4),
+VALUES (1, 'Nhà hàng', 3),
+       (2, 'Cà phê', 3),
+       (3, 'Quán ăn', 3),
        (4, 'Công viên', 2),
        (5, 'Khu vui chơi', 2),
        (6, 'Rạp chiếu phim', 2),
@@ -21,8 +22,8 @@ VALUES (1, 'Nhà hàng', 4),
        (8, 'Thuê xe ô tô', 5),
        (9, 'Thuê xe máy', 5),
        (10, 'Taxi', 5),
-       (11, 'Chợ', 3),
-       (12, 'Siêu thị', 3),
-       (13, 'Trung tâm thương mại', 3),
-       (14, 'Shop', 3),
-       (15, 'Địa điểm nổi tiếng',1);
+       (11, 'Chợ', 1),
+       (12, 'Siêu thị', 1),
+       (13, 'Trung tâm thương mại', 1),
+       (14, 'Shop', 1),
+       (15, 'Địa điểm nổi tiếng',2);

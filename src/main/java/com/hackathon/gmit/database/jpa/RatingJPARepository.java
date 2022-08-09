@@ -8,5 +8,9 @@ import com.hackathon.gmit.model.Location;
 import com.hackathon.gmit.model.Rating;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RatingJPARepository extends JpaRepository<Rating, Location> {
+import java.util.List;
+
+public interface RatingJPARepository extends JpaRepository<Rating, Location>  {
+    List<Rating> findAllByLocationId(Long locationId);
+
 }

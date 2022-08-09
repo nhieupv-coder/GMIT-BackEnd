@@ -11,7 +11,9 @@ spring:
     init:
       data-locations: classpath:db/location.sql,
         classpath:db/category.sql,
-        classpath:db/category_location.sql
+        classpath:db/category_location.sql,
+        classpath:db/users.sql
+
       mode: always
   servlet:
     multipart:

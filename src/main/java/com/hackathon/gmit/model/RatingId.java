@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class RatingId implements Serializable {
-    private Location locationId;
-    private Users userId;
+    private Long location;
+    private Long user;
 }
 

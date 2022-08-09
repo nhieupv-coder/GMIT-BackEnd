@@ -15,16 +15,17 @@ import java.time.LocalDateTime;
 @IdClass(RatingId.class)
 public class Rating implements Serializable {
     @Id
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (optional = false)
     @JoinColumn(name = "location_id")
-    private Location locationId;
+    private Location location;
     private int rate;
     @Column(length = 200)
     private String comment;
     @Id
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (optional = false)
     @JoinColumn(name = "user_id")
-    private Users userId;
+    private Users user;
+    LocalDateTime commentTime;
     private LocalDateTime deleteAt;
 
 }

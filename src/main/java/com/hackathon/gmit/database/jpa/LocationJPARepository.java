@@ -6,15 +6,17 @@ package com.hackathon.gmit.database.jpa;
 
 import com.hackathon.gmit.model.CategoryLocation;
 import com.hackathon.gmit.model.Location;
-import com.hackathon.gmit.model.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface LocationJPARepository extends JpaRepository<Location,Long> {
- Page<Location> findAllByDeleteAtNullAndCategoryLocationIn(List<CategoryLocation> listCategoryLocation, Pageable pageable);
- Page<Location> findAllByDeleteAtNull(Pageable pageable);
+public interface LocationJPARepository extends JpaRepository<Location, Long>{
+    Page<Location> findAllByDeleteAtNullAndCategoryLocationIn(List<CategoryLocation> listCategoryLocation, Pageable pageable);
+
+    Page<Location> findAllByDeleteAtNull(Pageable pageable);
+
+    Location findByIdAndDeleteAtIsNull(Long locationId);
 }

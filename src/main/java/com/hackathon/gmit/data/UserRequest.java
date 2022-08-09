@@ -26,11 +26,4 @@ public class UserRequest implements Serializable {
     @NotBlank
     @Size(max = 100)
     String fullName;
-
-    @Size(max = 100)
-    String avatar;
-
-    @NotBlank
-    @Size(max = 300)
-    String address;
 }

@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface UserJPARepository extends JpaRepository<Users,Long> {
     Optional<Users> findByUsernameAndDeleteAtNull(String username);
     Optional<Users> findByEmailAndDeleteAtNull(String email);
+    Users findByIdAndDeleteAtIsNull(Long userId);
 
 }

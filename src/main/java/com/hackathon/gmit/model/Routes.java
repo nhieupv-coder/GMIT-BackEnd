@@ -26,5 +26,7 @@ public class Routes implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
+    @Column(length = 255)
+    private String vehicle;
     private LocalDateTime deleteAt;
 }

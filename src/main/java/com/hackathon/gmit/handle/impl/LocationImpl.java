@@ -15,6 +15,8 @@ import com.hackathon.gmit.model.Category;
 import com.hackathon.gmit.model.CategoryLocation;
 import com.hackathon.gmit.model.Location;
 import com.hackathon.gmit.service.CalculatorDistanceService;
+import com.hackathon.gmit.service.ImageService;
+import com.hackathon.gmit.service.PathsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +38,9 @@ public class LocationImpl implements GetLocationsList {
     @Autowired
     CategoryLocationJPARepository categoryLocationJPARepository;
 
+    @Autowired
+    PathsService pathsService;
+
     @Override
     public LocationPageResponse getLocationList(Pageable pageable, LocationPropertiesRequest location) {
         Page<Location> locationPageable;
@@ -56,9 +61,9 @@ public class LocationImpl implements GetLocationsList {
                     .title(i.getTitle())
                     .address(i.getAddress())
                     .description(i.getDescription())
-                    .distance(null).imageCard(i.getImageCard())
-                    .imageDescription(i.getImageDescription())
-                    .imageAd(i.getImageAd())
+                    .distance(null).imageCard(pathsService.toFullPath(i.getImageCard()))
+                    .imageDescription(pathsService.toFullPath(i.getImageDescription()))
+                    .imageAd(pathsService.toFullPath(i.getImageAd()))
                     .category(getListCategory(i.getCategoryLocation()))
                     .build()).collect(Collectors.toList());
         } else {
@@ -69,9 +74,9 @@ public class LocationImpl implements GetLocationsList {
                     .description(i.getDescription())
                     .distance(calculatorDistanceService.calculatorDistance(location.getLatitude(),
                             i.getLatitude(), location.getLongitude(), i.getLongitude()))
-                    .imageCard(i.getImageCard())
-                    .imageDescription(i.getImageDescription())
-                    .imageAd(i.getImageAd())
+                    .imageCard(pathsService.toFullPath(i.getImageCard()))
+                    .imageDescription(pathsService.toFullPath(i.getImageDescription()))
+                    .imageAd(pathsService.toFullPath(i.getImageAd()))
                     .category(getListCategory(i.getCategoryLocation()))
                     .build()).sorted(Comparator
                     .comparing(LocationResponse::getDistance)).collect(Collectors.toList());

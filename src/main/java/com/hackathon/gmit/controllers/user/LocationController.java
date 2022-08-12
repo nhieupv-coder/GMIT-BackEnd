@@ -4,6 +4,7 @@
 
 package com.hackathon.gmit.controllers.user;
 
+import com.hackathon.gmit.config.AWSCloudConfig;
 import com.hackathon.gmit.data.LocationPageResponse;
 import com.hackathon.gmit.data.LocationPropertiesRequest;
 import com.hackathon.gmit.handle.GetLocationsList;
@@ -20,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocationController {
     @Autowired
     GetLocationsList getLocationsList;
+
+    @Autowired
+    AWSCloudConfig awsCloudConfig;
     @GetMapping
-    public ResponseEntity<LocationPageResponse> getListLocation(@PageableDefault(page = 0, size = 10)Pageable pageable,
-                                                                LocationPropertiesRequest request){
+    public ResponseEntity<LocationPageResponse> getListLocation(@PageableDefault(page = 0, size = 10)Pageable pageable, LocationPropertiesRequest request){
         LocationPageResponse locationResponse = getLocationsList.getLocationList(pageable,request);
         return ResponseEntity.ok(locationResponse);
     }

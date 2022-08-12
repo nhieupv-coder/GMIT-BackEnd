@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: heroku
+    active: heroku, dev
   jpa:
     show-sql: true
     defer-datasource-initialization: true

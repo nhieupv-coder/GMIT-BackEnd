@@ -24,6 +24,8 @@ public class LocationResponse implements Serializable {
     String imageDescription;
     @JsonProperty("image_ad")
     String imageAd;
+    Double longitude;
+    Double latitude;
     List<CategoryResponse> category;
     Double distance;
 }

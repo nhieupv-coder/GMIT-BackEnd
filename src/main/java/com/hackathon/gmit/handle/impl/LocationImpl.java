@@ -4,18 +4,15 @@
 
 package com.hackathon.gmit.handle.impl;
 
-import com.hackathon.gmit.data.CategoryResponse;
-import com.hackathon.gmit.data.LocationPageResponse;
-import com.hackathon.gmit.data.LocationResponse;
-import com.hackathon.gmit.data.LocationPropertiesRequest;
+import com.hackathon.gmit.data.*;
 import com.hackathon.gmit.database.jpa.CategoryLocationJPARepository;
 import com.hackathon.gmit.database.jpa.LocationJPARepository;
+import com.hackathon.gmit.handle.GetLocationDetail;
 import com.hackathon.gmit.handle.GetLocationsList;
 import com.hackathon.gmit.model.Category;
 import com.hackathon.gmit.model.CategoryLocation;
 import com.hackathon.gmit.model.Location;
 import com.hackathon.gmit.service.CalculatorDistanceService;
-import com.hackathon.gmit.service.ImageService;
 import com.hackathon.gmit.service.PathsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,10 +22,12 @@ import org.springframework.stereotype.Component;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class LocationImpl implements GetLocationsList {
+public class LocationImpl implements GetLocationsList,
+        GetLocationDetail {
     @Autowired
     LocationJPARepository locationJPARepository;
 
@@ -42,7 +41,7 @@ public class LocationImpl implements GetLocationsList {
     PathsService pathsService;
 
     @Override
-    public LocationPageResponse getLocationList(Pageable pageable, LocationPropertiesRequest location) {
+    public LocationPageResponse getLocationList(Pageable pageable, LocationCategoryPropertiesRequest location) {
         Page<Location> locationPageable;
         if (Objects.isNull(location.getCategoryId())) {
             locationPageable = locationJPARepository.findAllByDeleteAtNull(pageable);
@@ -64,6 +63,8 @@ public class LocationImpl implements GetLocationsList {
                     .distance(null).imageCard(pathsService.toFullPath(i.getImageCard()))
                     .imageDescription(pathsService.toFullPath(i.getImageDescription()))
                     .imageAd(pathsService.toFullPath(i.getImageAd()))
+                    .longitude(i.getLongitude())
+                    .latitude(i.getLatitude())
                     .category(getListCategory(i.getCategoryLocation()))
                     .build()).collect(Collectors.toList());
         } else {
@@ -78,6 +79,8 @@ public class LocationImpl implements GetLocationsList {
                     .imageDescription(pathsService.toFullPath(i.getImageDescription()))
                     .imageAd(pathsService.toFullPath(i.getImageAd()))
                     .category(getListCategory(i.getCategoryLocation()))
+                    .longitude(i.getLongitude())
+                    .latitude(i.getLatitude())
                     .build()).sorted(Comparator
                     .comparing(LocationResponse::getDistance)).collect(Collectors.toList());
         }
@@ -90,5 +93,30 @@ public class LocationImpl implements GetLocationsList {
                 .map(CategoryLocation::getCategory).collect(Collectors.toList());
         return listCategory.stream().map(t -> CategoryResponse.builder().categoryId(t.getId())
                 .name(t.getTitle()).build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public LocationResponse getLocationDetail(Long id, LocationPropertiesRequest request) {
+
+        Optional<Location> location = locationJPARepository.findById(id);
+        if (location.isPresent()) {
+            Location l = location.get();
+            LocationResponse response = LocationResponse.builder()
+                    .id(l.getId())
+                    .latitude(l.getLatitude())
+                    .longitude(l.getLongitude())
+                    .imageCard(l.getImageCard())
+                    .title(l.getTitle())
+                    .address(l.getAddress())
+                    .category(getListCategory(l.getCategoryLocation()))
+                    .distance(calculatorDistanceService.calculatorDistance(request.getLatitude(),
+                            l.getLongitude(), request.getLongitude(), l.getLongitude()))
+                    .description(l.getDescription())
+                    .imageAd(l.getImageAd())
+                    .imageDescription(l.getImageDescription())
+                    .build();
+            return response;
+        }
+        return null;
     }
 }

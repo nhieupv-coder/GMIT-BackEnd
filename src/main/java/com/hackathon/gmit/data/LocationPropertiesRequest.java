@@ -9,8 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class LocationCategoryPropertiesRequest {
+public class LocationPropertiesRequest {
     Double longitude;
     Double latitude;
-    Long CategoryId;
 }

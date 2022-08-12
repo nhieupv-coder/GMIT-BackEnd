@@ -38,9 +38,6 @@ public class NewsImpl implements GetListNews,
     @Autowired
     FeaturedNewsJPARepository featuredNewsJPARepository;
 
-    @Autowired
-
-
     @Override
     public List<NewsResponse> getListNews() {
         List<Reels> listNewModel = newsJPARepository.findAllByDeleteAtNull();

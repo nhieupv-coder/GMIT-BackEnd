@@ -26,7 +26,7 @@ public class AccountController {
 
     @PostMapping("/account")
     public ResponseEntity<Void> createAccount(@Validated @RequestBody UserRequest user) {
-        createAccount.creatAccount(user);
+        createAccount.createAccount(user);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     @GetMapping("check-login")

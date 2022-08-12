@@ -28,7 +28,7 @@ public class AccountImpl implements CreateAccount {
     UserAccountService userAccountService;
 
     @Override
-    public void creatAccount(UserRequest user) {
+    public void createAccount(UserRequest user) {
         String passwordEncode = encoder.encode(user.getPassword());
         Users userRegister = new Users();
         BeanUtils.copyProperties(user, userRegister);

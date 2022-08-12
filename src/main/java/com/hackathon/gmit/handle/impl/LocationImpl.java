@@ -109,7 +109,7 @@ public class LocationImpl implements GetLocationsList,
                     .title(l.getTitle())
                     .address(l.getAddress())
                     .category(getListCategory(l.getCategoryLocation()))
-                    .distance(calculatorDistanceService.calculatorDistance(request.getLatitude(),
+                    .distance((Objects.isNull(request.getLatitude()) || Objects.isNull(request.getLongitude())) ? null : calculatorDistanceService.calculatorDistance(request.getLatitude(),
                             l.getLongitude(), request.getLongitude(), l.getLongitude()))
                     .description(l.getDescription())
                     .imageAd(l.getImageAd())

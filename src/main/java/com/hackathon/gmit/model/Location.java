@@ -40,4 +40,6 @@ public class Location implements Serializable {
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "district_id")
     private Districts district;
+    @OneToMany(mappedBy = "location")
+    List<Rating> ratingList;
 }

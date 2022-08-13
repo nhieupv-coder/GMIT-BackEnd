@@ -18,5 +18,7 @@ public interface LocationJPARepository extends JpaRepository<Location, Long>{
 
     Page<Location> findAllByDeleteAtNull(Pageable pageable);
 
+    List<Location> findAllByDeleteAtNull();
+
     Location findByIdAndDeleteAtIsNull(Long locationId);
 }

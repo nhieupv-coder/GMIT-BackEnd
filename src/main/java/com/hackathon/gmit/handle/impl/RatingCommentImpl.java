@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,7 @@ public class RatingCommentImpl implements GetListRating, SendRating {
         rating.setLocation(location);
         rating.setComment(commentRatingRequest.getComment());
         rating.setRate(commentRatingRequest.getRating());
-        rating.setCommentTime(LocalDateTime.now());
+        rating.setCommentTime(LocalDateTime.now(ZoneId.of("Vietnam/Hanoi")));
         rating.setDeleteAt(null);
        return ratingJPARepository.save(rating);
     }

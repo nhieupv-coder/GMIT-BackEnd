@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -81,7 +82,7 @@ public class NewsImpl implements GetListNews,
         }
         StringBuilder strBuilder = new StringBuilder();
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Vietnam/Hanoi"));
         Duration duration = Duration.between(postTime, now);
         long day = duration.toDays();
         long hours = duration.toHours();

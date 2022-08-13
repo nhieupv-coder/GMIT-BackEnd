@@ -56,7 +56,7 @@ public class RatingCommentImpl implements GetListRating, SendRating {
         rating.setLocation(location);
         rating.setComment(commentRatingRequest.getComment());
         rating.setRate(commentRatingRequest.getRating());
-        rating.setCommentTime(LocalDateTime.now(ZoneId.of("Vietnam/Hanoi")));
+        rating.setCommentTime(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
         rating.setDeleteAt(null);
        return ratingJPARepository.save(rating);
     }

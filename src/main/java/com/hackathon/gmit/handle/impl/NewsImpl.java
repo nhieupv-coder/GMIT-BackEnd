@@ -82,7 +82,7 @@ public class NewsImpl implements GetListNews,
         }
         StringBuilder strBuilder = new StringBuilder();
 
-        LocalDateTime now = LocalDateTime.now(ZoneId.of("Vietnam/Hanoi"));
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
         Duration duration = Duration.between(postTime, now);
         long day = duration.toDays();
         long hours = duration.toHours();

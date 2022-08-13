@@ -6,8 +6,10 @@ package com.hackathon.gmit.handle.impl;
 
 import com.hackathon.gmit.data.CategoryGroupResponse;
 import com.hackathon.gmit.data.CategoryResponse;
+import com.hackathon.gmit.data.FieldsResponse;
 import com.hackathon.gmit.database.jpa.CategoryGroupJPARepository;
 import com.hackathon.gmit.handle.GetListCategoryAndGroup;
+import com.hackathon.gmit.handle.GetListFields;
 import com.hackathon.gmit.model.CategoryGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CategoryGroupImpl implements GetListCategoryAndGroup {
+public class CategoryGroupImpl implements GetListCategoryAndGroup,
+        GetListFields {
 
     @Autowired
     CategoryGroupJPARepository categoryGroupJPARepository;
@@ -39,5 +42,16 @@ public class CategoryGroupImpl implements GetListCategoryAndGroup {
                         }
                 ).collect(Collectors.toList());
         return listResult;
+    }
+
+    @Override
+    public List<FieldsResponse> getListFields() {
+        List<CategoryGroup> categoryGroup = categoryGroupJPARepository.findAllByDeleteAtNull();
+        List<FieldsResponse> responseList = categoryGroup.stream()
+                .map(i-> FieldsResponse.builder()
+                        .id(i.getId())
+                        .fieldsTitle(i.getCategoryGroupName())
+                        .build()).collect(Collectors.toList());
+        return responseList;
     }
 }

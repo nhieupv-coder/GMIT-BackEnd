@@ -7,6 +7,8 @@ package com.hackathon.gmit.database.jpa;
 import com.hackathon.gmit.model.CategoryGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryGroupJPARepository extends JpaRepository<CategoryGroup, Long> {
+import java.util.List;
 
+public interface CategoryGroupJPARepository extends JpaRepository<CategoryGroup, Long> {
+    List<CategoryGroup> findAllByDeleteAtNull();
 }

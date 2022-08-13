@@ -19,6 +19,7 @@ import java.util.Map;
 
 @Validated
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/user")
 public class AccountController {
     @Autowired

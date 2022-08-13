@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/comment-rating")
+@CrossOrigin("*")
 public class CommentRatingController {
     @Autowired
     GetListRating getListRating;

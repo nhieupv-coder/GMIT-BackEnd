@@ -14,7 +14,8 @@ spring:
         classpath:db/category_location.sql,
         classpath:db/users.sql,
         classpath:db/reels.sql,
-        classpath:db/district.sql
+        classpath:db/district.sql,
+        classpath:db/news.sql
 
       mode: always
   main:

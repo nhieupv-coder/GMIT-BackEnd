@@ -128,7 +128,7 @@ public class LocationImpl implements GetLocationsList,
         if (Objects.nonNull(request.getDistrictId())) {
             listLocationPageable = listLocationPageable
                     .stream()
-                    .filter(i -> i.getDistrict().getId().equals(request.getDistrictId()))
+                    .filter(i -> Objects.nonNull(i.getDistrict()) && i.getDistrict().getId().equals(request.getDistrictId()))
                     .collect(Collectors.toList());
         }
         if (Objects.nonNull(request.getFieldId())) {
@@ -162,6 +162,7 @@ public class LocationImpl implements GetLocationsList,
                 .content(listLocationSearchPageableResponse)
                 .totalElement(listLocationPageable.size())
                 .totalPage((int) Math.ceil(listLocationPageable.size()/pageable.getPageSize()))
+                .size(pageable.getPageSize())
                 .currentPage(pageable.getPageNumber())
                 .build();
         return response;
@@ -182,6 +183,6 @@ public class LocationImpl implements GetLocationsList,
        if(ratingRs.isPresent()){
            return ratingRs.getAsDouble();
        }
-       return 0;
+       return 5;
     }
 }

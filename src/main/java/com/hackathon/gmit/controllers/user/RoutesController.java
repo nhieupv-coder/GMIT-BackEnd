@@ -5,6 +5,8 @@
 package com.hackathon.gmit.controllers.user;
 
 import com.hackathon.gmit.data.RoutesRequest;
+import com.hackathon.gmit.data.VehicleResponse;
+import com.hackathon.gmit.handle.GetListVehicle;
 import com.hackathon.gmit.handle.InsertRoutes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +25,8 @@ public class RoutesController {
     @Autowired
     InsertRoutes insertRoutes;
 
-//    @Autowired
-//    GetListVehicle getListVehicle;
+    @Autowired
+    GetListVehicle getListVehicle;
 
 
     @PostMapping()
@@ -33,9 +35,9 @@ public class RoutesController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-//    @GetMapping("/vehicle")
-//    public ResponseEntity<List<VehicleResponse>> getListVehicle() {
-//        List<VehicleResponse> vehicleResponses = getListVehicle.getListVehicle();
-//        return ResponseEntity.ok(vehicleResponses);
-//    }
+    @GetMapping("/vehicle")
+    public ResponseEntity<List<VehicleResponse>> getListVehicle() {
+        List<VehicleResponse> vehicleResponses = getListVehicle.getListVehicle();
+        return ResponseEntity.ok(vehicleResponses);
+    }
 }

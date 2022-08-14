@@ -36,6 +36,6 @@ public class RoutesRequest implements Serializable {
     @JsonProperty("user_id")
     Long userId;
     @NotBlank
-    String vehicle;
+    Long vehicle;
 
 }

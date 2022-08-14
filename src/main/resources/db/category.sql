@@ -28,3 +28,14 @@ VALUES (1, 'Nhà hàng', 3),
        (14, 'Shop', 1),
        (15, 'Địa điểm nổi tiếng',2),
        (16, 'Bảo tàng',2);
+
+INSERT INTO public.vehicle(
+id, vehicle_title)
+VALUES (1,'đi bộ' ),
+       (2,'Xe đạp'),
+       (3,'Xe máy'),
+       (4,'taxi/xe hơi'),
+       (5,'Bus'),
+       (6,'Tàu Hỏa'),
+       (7,'Máy Bay'),
+       (8,'Tàu Thủy');

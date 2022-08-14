@@ -26,4 +26,5 @@ VALUES (1, 'Nhà hàng', 3),
        (12, 'Siêu thị', 1),
        (13, 'Trung tâm thương mại', 1),
        (14, 'Shop', 1),
-       (15, 'Địa điểm nổi tiếng',2);
+       (15, 'Địa điểm nổi tiếng',2),
+       (16, 'Bảo tàng',2);

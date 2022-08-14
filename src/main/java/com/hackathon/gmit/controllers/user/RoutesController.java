@@ -23,9 +23,19 @@ public class RoutesController {
     @Autowired
     InsertRoutes insertRoutes;
 
+//    @Autowired
+//    GetListVehicle getListVehicle;
+
+
     @PostMapping()
     public ResponseEntity<Void> insertRoutes(@RequestBody List<@Valid RoutesRequest> request) {
         insertRoutes.insert(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+//    @GetMapping("/vehicle")
+//    public ResponseEntity<List<VehicleResponse>> getListVehicle() {
+//        List<VehicleResponse> vehicleResponses = getListVehicle.getListVehicle();
+//        return ResponseEntity.ok(vehicleResponses);
+//    }
 }

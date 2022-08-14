@@ -65,6 +65,8 @@ public class LocationImpl implements GetLocationsList,
                     .imageDescription(pathsService.toFullPath(i.getImageDescription()))
                     .imageAd(pathsService.toFullPath(i.getImageAd()))
                     .longitude(i.getLongitude())
+                    .openTime(i.getOpenTime())
+                    .closeTime(i.getCloseTime())
                     .latitude(i.getLatitude())
                     .category(getListCategory(i.getCategoryLocation()))
                     .build()).collect(Collectors.toList());
@@ -81,6 +83,8 @@ public class LocationImpl implements GetLocationsList,
                     .imageAd(pathsService.toFullPath(i.getImageAd()))
                     .category(getListCategory(i.getCategoryLocation()))
                     .longitude(i.getLongitude())
+                    .openTime(i.getOpenTime())
+                    .closeTime(i.getCloseTime())
                     .latitude(i.getLatitude())
                     .build()).sorted(Comparator
                     .comparing(LocationResponse::getDistance)).collect(Collectors.toList());
@@ -111,7 +115,7 @@ public class LocationImpl implements GetLocationsList,
                     .address(l.getAddress())
                     .category(getListCategory(l.getCategoryLocation()))
                     .distance((Objects.isNull(request.getLatitude()) || Objects.isNull(request.getLongitude())) ? null : calculatorDistanceService.calculatorDistance(request.getLatitude(),
-                            l.getLongitude(), request.getLongitude(), l.getLongitude()))
+                            l.getLatitude(), request.getLongitude(), l.getLongitude()))
                     .description(l.getDescription())
                     .imageAd(pathsService.toFullPath(l.getImageAd()))
                     .imageDescription(pathsService.toFullPath(l.getImageDescription()))
@@ -153,7 +157,7 @@ public class LocationImpl implements GetLocationsList,
                         .title(i.getTitle())
                         .imageCard(pathsService.toFullPath(i.getImageCard()))
                         .distance((Objects.isNull(request.getLatitude()) || Objects.isNull(request.getLongitude())) ? null : calculatorDistanceService.calculatorDistance(request.getLatitude(),
-                                i.getLongitude(), request.getLongitude(), i.getLongitude()))
+                                i.getLatitude(), request.getLongitude(), i.getLongitude()))
                         .numberRating(getAvgRating(i.getRatingList()))
                         .build())
                 .collect(Collectors.toList());

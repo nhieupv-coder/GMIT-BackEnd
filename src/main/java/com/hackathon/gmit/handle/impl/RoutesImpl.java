@@ -26,6 +26,9 @@ public class RoutesImpl implements InsertRoutes {
     @Autowired
     LocationJPARepository locationJPARepository;
 
+//    @Autowired(required=true)
+//    VehicleJPARepository vehicleJPARepository;
+
     @Override
     public void insert(List<RoutesRequest> params) {
         for (RoutesRequest r: params) {

@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.List;
 
 @Builder
@@ -17,6 +18,10 @@ public class LocationResponse implements Serializable {
     Long id;
     String title;
     String address;
+    @JsonProperty("open_time")
+    LocalTime openTime;
+    @JsonProperty("close_time")
+    LocalTime closeTime;
     String description;
     @JsonProperty("image_card")
     String imageCard;

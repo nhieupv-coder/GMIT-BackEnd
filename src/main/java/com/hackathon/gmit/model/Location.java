@@ -9,6 +9,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -24,8 +25,8 @@ public class Location implements Serializable {
     private String address;
     private double longitude;
     private double latitude;
-    private LocalDateTime openTime;
-    private LocalDateTime closeTime;
+    private LocalTime openTime;
+    private LocalTime closeTime;
     @Column(length = 3000)
     private String description;
     @Column(length = 100)
